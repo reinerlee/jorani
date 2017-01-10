@@ -10,10 +10,17 @@
 --      * Add the possibility to exclude leave types from a contract.
 --      * Define a default leave type for a contract (overwrite default type set in config file).
 --      * History of changes on leave requests table
+--      * Duration of leave and overtime requests were rounded to 2 decimals, now 3 decimals
 
 ALTER TABLE `dayoffs` MODIFY `title` varchar(128) CHARACTER SET utf8;
 
 ALTER TABLE `users` MODIFY `language` varchar(5);
+ALTER TABLE `users` MODIFY `position` int(11) DEFAULT NULL;
+ALTER TABLE `users` MODIFY `organization` int(11) DEFAULT 0;
+
+ALTER TABLE `leaves` MODIFY `duration` decimal(10,3) DEFAULT NULL;
+
+ALTER TABLE `overtime` MODIFY `duration` decimal(10,3) DEFAULT NULL;
 
 CREATE TABLE IF NOT EXISTS `leaves_history` (
   `id` int(11) NOT NULL,
